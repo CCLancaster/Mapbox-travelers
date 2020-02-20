@@ -1,0 +1,21 @@
+<% if(results.length > 0) { %>
+    <h1>Here are your results</h1>
+
+    <ul>
+        <% results.forEach(result=> { %>
+            <li>
+                <%= result.name %>, <%= result.state %> (longitude: <%= result.long %>, latitude: <%= result.lat %>)
+                <form action="/faves" method="post">
+                    <input type="hidden" name="name" value="<%= result.name %>">
+                    <input type="hidden" name="state" value="<%= result.state %>">
+                    <input type="hidden" name="lat" value="<%= result.lat %>">
+                    <input type="hidden" name="long" value="<%= result.long %>">
+
+                    <input type="submit" value="Add to faves">
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+<% } else { %>
+    <h1>We couldn't find anything for that search</h1>
+<% } %>
